@@ -3,193 +3,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cash Gaming Hub</title>
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- background:#090d1c;
- color:white;
- font-family:Arial,sans-serif;
-}
-header{
- background:linear-gradient(90deg,#17134a,#142d61);
- padding:25px;
- text-align:center;
- border-bottom:3px solid #00d9ff;
-}
-header h1{color:#00e5ff;font-size:35px}
-nav{
- display:flex;justify-content:center;
- flex-wrap:wrap;gap:12px;padding:18px;
-}
-button{
- background:#172b50;color:white;
- border:1px solid #00d9ff;
- border-radius:9px;padding:12px 20px;
- cursor:pointer;font-weight:bold;
-}
-button:hover{background:#087da5}
-.container{max-width:1100px;margin:auto;padding:20px}
-h2{color:#00e5ff}
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
- gap:18px;
-}
-.game{
- background:#151d35;
- border:1px solid #304a78;
- border-radius:14px;
- padding:20px;text-align:center;
-}
-.game .emoji{font-size:48px}
-.game button{width:100%;margin-top:12px}
-section{margin-bottom:35px}
-#math{
- background:#151d35;padding:25px;
- border-radius:14px;text-align:center;
-}
-input{
- padding:13px;border-radius:8px;
- border:2px solid #00d9ff;
- background:#090d1c;color:white;
- width:100%;max-width:300px;
- margin:10px;
-}
-#message{color:#00ff9d;font-weight:bold}
-footer{text-align:center;padding:25px;color:#91a3c5}
+body{margin:0;background:#080d1d;color:white;font-family:Arial}
+header{text-align:center;padding:25px;background:#171c45}
+h1,h2{color:#00e5ff}
+main{max-width:900px;margin:auto;padding:20px}
+.panel{background:#151d35;padding:22px;border-radius:14px;margin:20px 0}
+input{padding:12px;margin:7px 0;width:90%;max-width:350px;background:#090d1c;color:white;border:1px solid #00d9ff;border-radius:7px}
+button{padding:12px 18px;background:#087da5;color:white;border:0;border-radius:7px;margin:5px;cursor:pointer}
+button:hover{background:#00a9d6}
+.hidden{display:none}
+.game{display:inline-block;background:#202c4b;padding:20px;margin:8px;border-radius:10px}
+#message{color:#00ff9d}
 </style>
 </head>
 <body>
-
 <header>
 <h1>🎮 CASH GAMING HUB</h1>
-<p>Welcome to your ultimate gaming world!</p>
+<p>Gaming • Racing • Adventure • Math</p>
 <p>Owned by Cash</p>
 </header>
 
-<nav>
-<button onclick="show('games')">Games</button>
-<button onclick="show('racing')">Racing</button>
-<button onclick="show('adventure')">Adventure</button>
-<button onclick="show('math')">Math Challenge</button>
-</nav>
+<main>
 
-<div class="container">
-
-<section id="games">
-<h2>🔥 All Games</h2>
-<div class="grid">
-
-<div class="game">
-<div class="emoji">🏎️</div>
-<h3>Mario Kart</h3>
-<p>Racing fun!</p>
-<button onclick="alert('Add your Mario Kart game link here!')">Play</button>
+<div class="panel" id="login">
+<h2>👑 Owner Login</h2>
+<input id="username" placeholder="Username"><br>
+<input id="password" type="password" placeholder="Password"><br>
+<button onclick="loginOwner()">Login</button>
+<p id="message"></p>
 </div>
 
-<div class="game">
-<div class="emoji">🦔</div>
-<h3>Sonic</h3>
-<p>Speed adventure!</p>
-<button onclick="alert('Add your Sonic game link here!')">Play</button>
+<div class="panel hidden" id="admin">
+<h2>👑 Owner Dashboard</h2>
+<p>Welcome, yolks!</p>
+
+<h3>Ban a user (demo)</h3>
+<input id="banName" placeholder="Username to ban">
+<button onclick="banUser()">Ban User</button>
+
+<h3>Unban a user</h3>
+<input id="unbanName" placeholder="Username to unban">
+<button onclick="unbanUser()">Unban User</button>
+
+<h3>Make someone an admin</h3>
+<input id="adminName" placeholder="Username">
+<button onclick="makeAdmin()">Make Admin</button>
+
+<h3>Remove admin</h3>
+<input id="removeName" placeholder="Username">
+<button onclick="removeAdmin()">Remove Admin</button>
+
+<h3>Account list (demo)</h3>
+<div id="users"></div>
+<button onclick="logout()">Logout</button>
 </div>
 
-<div class="game">
-<div class="emoji">🔥</div>
-<h3>Free Fire</h3>
-<p>Action game</p>
-<button onclick="alert('Add your Free Fire game link here!')">Play</button>
-</div>
-
-<div class="game">
-<div class="emoji">🎯</div>
-<h3>Geometry Dash</h3>
-<p>Jump and dodge!</p>
-<button onclick="alert('Add your Geometry Dash game link here!')">Play</button>
-</div>
-
-<div class="game">
-<div class="emoji">⚽</div>
-<h3>Sports</h3>
-<p>Sports games!</p>
-<button onclick="alert('Add your sports game link here!')">Play</button>
-</div>
-
-<div class="game">
-<div class="emoji">🧩</div>
-<h3>Puzzle Games</h3>
-<p>Test your brain!</p>
-<button onclick="alert('Add your puzzle game link here!')">Play</button>
-</div>
-
-</div>
+<section class="panel">
+<h2>🎮 Games</h2>
+<div class="game">🏎️ Mario Kart</div>
+<div class="game">🦔 Sonic</div>
+<div class="game">🔥 Free Fire</div>
+<div class="game">🎯 Geometry Dash</div>
+<div class="game">🧩 Puzzle Games</div>
 </section>
 
-<section id="racing">
-<h2>🏁 Racing Zone</h2>
-<p>Welcome to the racing section!</p>
-</section>
-
-<section id="adventure">
-<h2>⚔️ Adventure Zone</h2>
-<p>Explore new adventures!</p>
-</section>
-
-<section id="math">
+<section class="panel">
 <h2>🧠 Math Challenge</h2>
 <p id="question"></p>
-<input id="answer" type="number" placeholder="Enter math answer">
-<br>
-<button onclick="checkAnswer()">Submit Answer</button>
-<p id="message"></p>
-<p id="progress">Question 1 of 50</p>
+<input id="answer" type="number" placeholder="Your answer">
+<button onclick="checkAnswer()">Submit</button>
+<p id="mathMessage"></p>
 </section>
 
-</div>
-
-<footer>
-<p>Cash Gaming Hub © 2026</p>
-<p>Made for fun 🎮</p>
-</footer>
+</main>
 
 <script>
-let number=1;
+// FRONT-END DEMO ONLY.
+// Do not use this as real account security.
+const OWNER="yolks";
+const OWNER_PASSWORD="FROSTTT";
+
+let banned=[];
+let admins=[];
 let a,b;
 
+function loginOwner(){
+let u=document.getElementById("username").value;
+let p=document.getElementById("password").value;
+
+if(u===OWNER && p===OWNER_PASSWORD){
+document.getElementById("login").classList.add("hidden");
+document.getElementById("admin").classList.remove("hidden");
+document.getElementById("message").textContent="";
+showUsers();
+}else{
+document.getElementById("message").textContent="Incorrect login!";
+}
+}
+
+function banUser(){
+let u=document.getElementById("banName").value.trim();
+if(!u)return;
+if(u.toLowerCase()===OWNER){
+alert("You cannot ban the owner!");
+return;
+}
+if(!banned.includes(u))banned.push(u);
+showUsers();
+}
+
+function unbanUser(){
+let u=document.getElementById("unbanName").value.trim();
+banned=banned.filter(x=>x!==u);
+showUsers();
+}
+
+function makeAdmin(){
+let u=document.getElementById("adminName").value.trim();
+if(!u || u.toLowerCase()===OWNER)return;
+if(!admins.includes(u))admins.push(u);
+showUsers();
+}
+
+function removeAdmin(){
+let u=document.getElementById("removeName").value.trim();
+admins=admins.filter(x=>x!==u);
+showUsers();
+}
+
+function showUsers(){
+document.getElementById("users").innerHTML=
+"<p>Owner: yolks</p>"+
+"<p>Admins: "+admins.join(", ")+"</p>"+
+"<p>Banned: "+banned.join(", ")+"</p>";
+}
+
+function logout(){
+document.getElementById("admin").classList.add("hidden");
+document.getElementById("login").classList.remove("hidden");
+document.getElementById("password").value="";
+}
+
 function newQuestion(){
- a=Math.floor(Math.random()*20)+1;
- b=Math.floor(Math.random()*20)+1;
- document.getElementById('question').textContent=
- `${a} + ${b} = ?`;
- document.getElementById('answer').value='';
- document.getElementById('progress').textContent=
- `Question ${number} of 50`;
+a=Math.floor(Math.random()*20)+1;
+b=Math.floor(Math.random()*20)+1;
+document.getElementById("question").textContent=a+" + "+b+" = ?";
 }
+
 function checkAnswer(){
- let answer=Number(document.getElementById('answer').value);
- if(answer===a+b){
-  number++;
-  if(number>50){
-   document.getElementById('question').textContent=
-   '🏆 YOU COMPLETED ALL 50 CHALLENGES!';
-   document.getElementById('message').textContent=
-   'Congratulations!';
-   document.getElementById('progress').textContent='Finished!';
-   return;
-  }
-  document.getElementById('message').textContent='Correct! Next question!';
-  newQuestion();
- }else{
-  document.getElementById('message').textContent='Try again!';
- }
+if(Number(document.getElementById("answer").value)===a+b){
+document.getElementById("mathMessage").textContent="Correct! 🎉";
+newQuestion();
+document.getElementById("answer").value="";
+}else{
+document.getElementById("mathMessage").textContent="Try again!";
 }
-function show(id){
- document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
+
 newQuestion();
 </script>
 </body>
 </html>
+
